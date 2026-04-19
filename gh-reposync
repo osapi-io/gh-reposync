@@ -4,7 +4,7 @@
 # gh extension.
 #
 # Install:
-#   gh ext install osapi-io/gh-reposync
+#   gh ext install retr0h/gh-reposync
 #
 # Usage:
 #   gh reposync --check                    # Report drift (exit 1 if any)
