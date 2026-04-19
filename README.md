@@ -26,7 +26,7 @@ in line. `--check` reports drift without mutating anything.
 ## 📦 Install
 
 ```bash
-gh ext install osapi-io/gh-reposync
+gh ext install retr0h/gh-reposync
 ```
 
 Updates land via `gh ext upgrade gh-reposync`.
