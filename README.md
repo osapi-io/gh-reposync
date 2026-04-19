@@ -10,9 +10,9 @@ in line. `--check` reports drift without mutating anything.
 
 ## ✨ Features
 
-- 🧾 **Single manifest per owner** — `gh-reposync.json` lives in the
-  owner's `.github` repo by convention and describes every managed
-  repo's desired state
+- 🧾 **Per-repo manifest** — each managed repo carries its own
+  `.github/repos.json` describing its desired state; run the tool
+  from inside the repo and it picks the file up automatically
 - 🔍 **Drift detection** — `gh reposync --check` diffs actual vs
   desired and exits non-zero when anything is off, so CI can gate PRs
   that forget to update the manifest
@@ -55,16 +55,16 @@ First match wins:
 
 1. `--config PATH` on the command line
 2. `$GH_REPOSYNC_CONFIG` environment variable
-3. `./gh-reposync.json` in the current directory
-4. `./.github/gh-reposync.json`
+3. `./repos.json` in the current directory
+4. `./.github/repos.json`
 
-The expected workflow: keep your manifest in `example-org/.github/gh-reposync.json`
+The expected workflow: keep your manifest in `example-org/.github/repos.json`
 (GitHub's conventional location for org-wide defaults), `cd` into
 that repo, and run `gh reposync --apply`.
 
 ## 📝 Manifest schema
 
-See [`gh-reposync.example.json`](gh-reposync.example.json) for a
+See [`repos.example.json`](repos.example.json) for a
 complete example. The schema in brief:
 
 ```jsonc

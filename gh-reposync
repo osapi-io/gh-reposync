@@ -15,8 +15,8 @@
 # Config resolution (first match wins):
 #   1. --config PATH
 #   2. $GH_REPOSYNC_CONFIG
-#   3. ./gh-reposync.json
-#   4. ./.github/gh-reposync.json
+#   3. ./repos.json
+#   4. ./.github/repos.json
 #
 # A repo entry may optionally set "owner" to override the default org —
 # used for external-user-owned repos (e.g. retr0h/tlock) managed
@@ -44,8 +44,8 @@ Usage: gh reposync [--check | --apply] [--repo NAME] [--config PATH]
 Config discovery (first match wins):
   1. --config PATH
   2. \$GH_REPOSYNC_CONFIG
-  3. ./gh-reposync.json
-  4. ./.github/gh-reposync.json
+  3. ./repos.json
+  4. ./.github/repos.json
 EOF
   exit 0
 }
@@ -63,10 +63,10 @@ resolve_config() {
     echo "$GH_REPOSYNC_CONFIG"
     return
   fi
-  for candidate in ./gh-reposync.json ./.github/gh-reposync.json; do
+  for candidate in ./repos.json ./.github/repos.json; do
     [[ -f "$candidate" ]] && { echo "$candidate"; return; }
   done
-  die "no manifest found — pass --config, set \$GH_REPOSYNC_CONFIG, or run from a directory containing gh-reposync.json or .github/gh-reposync.json"
+  die "no manifest found — pass --config, set \$GH_REPOSYNC_CONFIG, or run from a directory containing repos.json or .github/repos.json"
 }
 
 # resolve_owner echoes the owner for a given repo name — per-repo `.owner`
